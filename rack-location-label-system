@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Warehouse Rack Label Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    label, input {
+      display: block;
+      margin-top: 10px;
+    }
+    input {
+      padding: 6px;
+      width: 200px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+    }
+    #labels {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .label {
+      width: 45%;
+      border: 2px dashed #444;
+      padding: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      box-shadow: 2px 2px 5px #ccc;
+      page-break-inside: avoid;
+    }
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #printArea, #printArea * {
+        visibility: visible;
+      }
+      #printArea {
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Warehouse Rack Label Generator</h2>
+
+  <label>Zone Codes (comma separated, e.g. A,B):</label>
+  <input type="text" id="zones" value="A,B">
+
+  <label>Number of Racks per Zone:</label>
+  <input type="number" id="racks" value="2">
+
+  <label>Positions per Rack:</label>
+  <input type="number" id="positions" value="2">
+
+  <label>Levels per Position:</label>
+  <input type="number" id="levels" value="2">
+
+  <button onclick="generateLabels()">Generate Labels</button>
+  <button onclick="window.print()">🖨️ Print Labels</button>
+
+  <div id="printArea">
+    <div id="labels"></div>
+  </div>
+
+  <script>
+    function pad(num) {
+      return num.toString().padStart(2, '0');
+    }
+
+    function generateLabels() {
+      const zones = document.getElementById("zones").value.split(',').map(z => z.trim());
+      const numRacks = parseInt(document.getElementById("racks").value);
+      const numPositions = parseInt(document.getElementById("positions").value);
+      const numLevels = parseInt(document.getElementById("levels").value);
+      const container = document.getElementById("labels");
+      container.innerHTML = ''; // Clear previous labels
+
+      zones.forEach(zone => {
+        for (let r = 1; r <= numRacks; r++) {
+          for (let p = 1; p <= numPositions; p++) {
+            for (let l = 1; l <= numLevels; l++) {
+              const code = `${zone}-${pad(r)}-${pad(p)}-${pad(l)}`;
+              const label = document.createElement('div');
+              label.className = 'label';
+              label.textContent = code;
+              container.appendChild(label);
+            }
+          }
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
