@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Warehouse Rack Code Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    label, input {
+      display: block;
+      margin-top: 10px;
+    }
+    input {
+      padding: 6px;
+      width: 200px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+    }
+    textarea {
+      width: 100%;
+      height: 300px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Custom Rack Location Code Generator</h2>
+
+  <label>Zone Codes (comma separated, e.g. A,B):</label>
+  <input type="text" id="zones" value="A,B">
+
+  <label>Number of Racks per Zone:</label>
+  <input type="number" id="racks" value="2">
+
+  <label>Positions per Rack:</label>
+  <input type="number" id="positions" value="3">
+
+  <label>Levels per Position:</label>
+  <input type="number" id="levels" value="2">
+
+  <button onclick="generateCustomCodes()">Generate Codes</button>
+
+  <h3>Generated Codes:</h3>
+  <textarea id="output" readonly></textarea>
+
+  <script>
+    function pad(num) {
+      return num.toString().padStart(2, '0');
+    }
+
+    function generateCustomCodes() {
+      const zones = document.getElementById("zones").value.split(',').map(z => z.trim());
+      const numRacks = parseInt(document.getElementById("racks").value);
+      const numPositions = parseInt(document.getElementById("positions").value);
+      const numLevels = parseInt(document.getElementById("levels").value);
+      const output = [];
+
+      zones.forEach(zone => {
+        for (let r = 1; r <= numRacks; r++) {
+          for (let p = 1; p <= numPositions; p++) {
+            for (let l = 1; l <= numLevels; l++) {
+              const code = `${zone}-${pad(r)}-${pad(p)}-${pad(l)}`;
+              output.push(code);
+            }
+          }
+        }
+      });
+
+      document.getElementById("output").value = output.join('\n');
+    }
+  </script>
+
+</body>
+</html>
