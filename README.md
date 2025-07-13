@@ -1,5 +1,4 @@
-# z-wms
-Zynex WMS-Sample Codes
+# Zynex Warehouse Management Sytem (Z-WMS)
 
 # 2025/7/13
 All essential features completly implemented to WMS.
