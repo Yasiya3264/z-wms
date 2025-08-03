@@ -1,5 +1,8 @@
 # Zynex Warehouse Management Sytem (Z-WMS)
 
+# 2025/8/3
+Code changed to warehouse rack location genaration system. Users can generate warehouse rack locations and print lebels.
+
 # 2025/7/13
 All essential features completly implemented to WMS.
 1. SKU Master
