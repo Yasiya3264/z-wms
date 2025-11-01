@@ -8,7 +8,7 @@ All essential features completly implemented to WMS.
 4. Inbound Module ✅
 5. Outbound Module ✅
 6. Inventory Transfer Module (In warehouse inventory transfer) ✅
-7. Inbound / Outbound & Inventory Transfer Report system. ✅
+7. Inbound / Outbound & Inventory Transfer Report system. ✅ ```Un editable history```
 
 
 # 2025/8/3
