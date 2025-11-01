@@ -4,7 +4,7 @@
 All essential features completly implemented to WMS.
 1. SKU Master ✅ `Company wise SKU masters`
 2. Location Master ✅ `Warehouse wise rack locations system`
-3. Customers Master (For Manage Company code wise customers data) ✅
+3. Customers Master ✅ `Company Wise customers management`
 4. Inbound Module ✅
 5. Outbound Module ✅
 6. Inventory Transfer Module (In warehouse inventory transfer) ✅
